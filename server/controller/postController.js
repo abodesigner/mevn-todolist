@@ -15,6 +15,9 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find({});
+        if (!posts) {
+            res.status(404).send({error: "Invalid"})
+        }
         res.send(posts);
     } catch (error) {
         res.status(500).send(error)
@@ -50,7 +53,7 @@ const updatePost = async (req, res) => {
     }
 }
 
-// Delete
+// Delete Single post
 const deletePost = async (req, res) => {
     try {
         const postFound = await Post.findByIdAndDelete(req.params.id)
@@ -64,10 +67,25 @@ const deletePost = async (req, res) => {
     }
 }
 
+// Delete all
+const deleteAllPosts = async (req,res) => {
+    try {
+        const isEmpty = await Post.deleteMany({});
+
+        if (!isEmpty) {
+            res.status(404).send({error: 'invalid delete'})
+        }
+        res.send({ msg : "all data removed" });
+    } catch (error) {
+        res.status(501).send(error)
+    }
+}
+
 module.exports = {
     createPost,
     getAllPosts,
     getPost,
     updatePost,
-    deletePost
+    deletePost,
+    deleteAllPosts
 }
