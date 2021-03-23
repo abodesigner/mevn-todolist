@@ -9,9 +9,9 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 
-// register postRoutes
-const postRoutes = require("./routes/postRoutes");
-app.use(postRoutes)
+// register todoRoutes
+const todoRoutes = require("./routes/todoRoutes");
+app.use(todoRoutes)
 
 
 // Handle Production
