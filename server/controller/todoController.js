@@ -15,9 +15,6 @@ const addTodo = async (req, res) => {
 const getAllTodos = async (req, res) => {
     try {
         const todos = await Todo.find({});
-        if (todos.length === 0) {
-            return res.send({msg : "NO Data Found"})
-        }
         if (!todos) {
             res.status(404).send({error: "Invalid"})
         }
@@ -59,9 +56,9 @@ const updateTodo = async (req, res) => {
 // Delete Single todo
 const deleteTodo = async (req, res) => {
     try {
-        const todoFound = await Post.findByIdAndDelete(req.params.id)
+        const todoFound = await Todo.findByIdAndDelete(req.params.id)
         if (!todoFound) {
-            res.status(404).send({error: 'Not Found'});
+            res.status(404).send({error: 'Item already deleted or Not Found'});
         }
         res.send(todoFound)
     } catch (error) {

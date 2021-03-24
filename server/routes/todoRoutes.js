@@ -3,7 +3,7 @@ const router = express.Router();
 
 const todoController = require("../controller/todoController")
 
-router.post("/api/todos",       todoController.addTodo);
+router.post("/api/todos",        todoController.addTodo);
 router.get("/api/todos",         todoController.getAllTodos);
 router.get("/api/todos/:id",     todoController.getTodo);
 router.patch("/api/todos/:id",   todoController.updateTodo);
