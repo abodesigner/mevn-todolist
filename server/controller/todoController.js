@@ -75,7 +75,7 @@ const deleteAllTodos = async (req,res) => {
         if (!isEmpty) {
             res.status(404).send({error: 'invalid delete'})
         }
-        res.send({ msg : "Done, All data removed" });
+        res.status(200).send({ msg : `All items removed` });
     } catch (error) {
         res.status(501).send(error)
     }
